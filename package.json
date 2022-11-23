@@ -5,12 +5,14 @@
   "main": "blog/src/index.js",
   "scripts": {
     "start": "nodemon --inspect blog/src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node-sass --watch blog/src/resource/scss --output blog/src/public/css"
   },
   "author": "le minh thien",
   "license": "ISC",
   "devDependencies": {
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-sass": "^8.0.0"
   },
   "dependencies": {
     "express-handlebars": "^6.0.6"

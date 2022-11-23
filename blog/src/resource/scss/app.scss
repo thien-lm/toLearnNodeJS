@@ -1,0 +1,15 @@
+@import './variable.scss';
+.test{
+    font-size: 1rem;
+    background-color: red;
+    width: 100px;
+}
+
+h1 {
+    color: $red_color;
+
+}
+
+h2{
+    color: blue;
+}

@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/news", (req, res) => {
-    res.render('news')
+    res.render('news') 
 })
 
 
