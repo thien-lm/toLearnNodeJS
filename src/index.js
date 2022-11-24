@@ -8,7 +8,7 @@ const morgan = require('morgan')
 app.use(express.static(path.join(__dirname, 'public')))
 
 //http logger
-app.use(morgan('combined'))
+//app.use(morgan('combined'))
 
 //template engine
 app.engine('hbs', engine({
@@ -22,8 +22,16 @@ app.get("/", (req, res) => {
     res.render('home')
 })
 
-app.get("/news", (req, res) => {
+app.get("/linh", (req, res) => {
     res.render('news') 
+})
+
+app.get("/search", (req, res) => {
+    res.render('search') 
+})
+
+app.post("/search", (req, res) => {
+    res.render('search') 
 })
 
 
