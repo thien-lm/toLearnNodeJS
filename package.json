@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-stage"
     }
   },
   "author": "le minh thien",
