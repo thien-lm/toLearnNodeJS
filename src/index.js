@@ -5,6 +5,8 @@ const { engine  } = require('express-handlebars')
 const port = 3000
 const morgan = require('morgan')
 
+const routes = require('./routes')
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.urlencoded({
@@ -22,24 +24,9 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resource/views'))
 
  
-app.get("/", (req, res) => {
-    res.render('home')
-})
-
-app.get("/linh", (req, res) => {
-    res.render('news') 
-})
-
-app.get("/search", (req, res) => {
-    console.log(req.query.q)
-    res.render('search') 
-})
-
-app.post("/search", (req, res) => {
-    //recive data from client by POST method
-    console.log(req.body)
-    res.send('search') 
-})
+//route init
+routes(app)
 
 
-app.listen(port, () => console.log('example app')) 
+
+app.listen(port, () => console.log('example app')) //start a web server
