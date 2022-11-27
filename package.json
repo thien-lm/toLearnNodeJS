@@ -9,8 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node-sass --watch src/resource/scss --output src/public/css"
   },
-  "lint-stage" : {
-    "src/**/*.{js,json,scss}" : "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  "lint-stage": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
   },
   "husky": {
     "hooks": {
@@ -19,7 +19,6 @@
   },
   "author": "le minh thien",
   "license": "ISC",
-
   "devDependencies": {
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
@@ -28,6 +27,7 @@
     "prettier": "^2.8.0"
   },
   "dependencies": {
-    "express-handlebars": "^6.0.6"
+    "express-handlebars": "^6.0.6",
+    "mongoose": "^6.7.3"
   }
 }

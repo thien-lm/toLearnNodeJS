@@ -5,7 +5,11 @@ const { engine } = require('express-handlebars');
 const port = 3000;
 const morgan = require('morgan');
 
+
 const routes = require('./routes');
+const db = require('./config/db')
+//conncet to db
+db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -26,9 +30,9 @@ app.engine(
     }),
 );
             app.set('view engine', 'hbs');
-app.set(        'views', path.join(__dirname, 'resource/views'));
+app.set(        'views', path.join(__dirname, 'resource', 'views'));
 
 //route init
     routes(app);
 
-app.listen(port, () => console.log('example app')); //start a web server
+app.listen(port, () => console.log('learning app')); //start a web server
