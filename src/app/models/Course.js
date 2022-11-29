@@ -14,4 +14,4 @@ const Course = new Scheme({
     level: { type: String, maxLength: 255 },
 });
 
-module.exports = mongoose.model('course', Course); //first argument: in database, second = schema
+module.exports = mongoose.model('narutoshippuden', Course); //first argument: in database, second = schema
