@@ -4,7 +4,7 @@
   "description": "thien dz khoaito",
   "main": "blog/src/index.js",
   "scripts": {
-    "beautiful": "prettier --single-quote --trailing-comma all --tab-width 4 --write src/**/*.{js,json,scss}",
+    "beautiful": "prettier --single-quote --trailing-comma all --tab-width 4 --write src/**/*.{js,json,scss,hbs}",
     "start": "nodemon --inspect src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node-sass --watch src/resource/scss --output src/public/css"
