@@ -13,6 +13,20 @@ class CourseController {
             .catch(next)
       
     }
+
+    create(req, res, next) {
+        res.render("courses/create")
+      
+    }
+
+    store(req, res, next) {
+        //res.json(req.body)//body: dulieu tu clienrt
+        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`
+        const course = new Course(req.body)
+        course.save()
+            .then(() => res.redirect("/"))
+            .catch("404 ERROR")
+    }
 }
 
 module.exports = new CourseController();
