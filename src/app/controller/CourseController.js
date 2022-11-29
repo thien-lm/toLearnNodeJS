@@ -1,5 +1,5 @@
 const Course = require('../models/Course')
-const { toObject }= require('../../util/convertToObject')
+const { toObject, multipleToObject }= require('../../util/convertToObject')
 class CourseController {
     //[GET] news
     
@@ -26,6 +26,21 @@ class CourseController {
         course.save()
             .then(() => res.redirect("/"))
             .catch("404 ERROR")
+    }
+    //:id/edit
+    edit(req, res, next) {
+        Course.findById(req.params.id)
+            .then(course => res.render('courses/edit', {
+                course: toObject(course) 
+            }))
+            .catch(next)
+      
+    }
+    //put
+    update(req, res, next) {
+        Course.updateOne({_id : req.params.id}, req.body)
+            .then(() => res.redirect('/me/stored/courses'))
+            .catch(next)
     }
 }
 
