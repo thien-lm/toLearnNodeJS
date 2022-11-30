@@ -7,7 +7,7 @@ function route(app) {
     app.use('/news', newsRouter);
     app.use('/me', meRouter);
     app.use('/courses', courseRouter);
-    app.get('/', siteRouter);
+    app.use('/', siteRouter);
 }
 
 module.exports = route;
