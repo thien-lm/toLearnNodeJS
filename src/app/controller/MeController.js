@@ -4,7 +4,7 @@ class CourseController {
     //[GET] news
 
     show(req, res, next) {
-        console.log('session ID of meController', req.sessionID)
+        console.log(req.cookies)
         Course.find({})
             .then(courses => {
                 res.render('me/stored-courses', {

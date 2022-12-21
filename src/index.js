@@ -8,6 +8,10 @@ const morgan = require('morgan');
 const routes = require('./routes');
 const db = require('./config/db');
 
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
+
 const initPassportLocal = require("./app/controller/passport/passportLocal");
 
 initPassportLocal(); 
