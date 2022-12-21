@@ -18,6 +18,7 @@ class SiteController {
     //for user after log
     user(req, res, next) {
         console.log(req.cookies)
+        console.log(req.user)
         if(req.isAuthenticated()){
         Course.find({})
             .then((course) => {
@@ -74,7 +75,8 @@ class SiteController {
     }
 
     signup(req, res) {
-        res.render('signup');
+        res.clearCookie('connect.sid');
+        res.redirect('/');
     }
     //POST: store user
     store(req, res, next) {

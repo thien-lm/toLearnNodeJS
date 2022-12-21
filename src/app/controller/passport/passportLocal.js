@@ -26,8 +26,6 @@ let initPassportLocal = () => {
         console.log('sai mk')
         return done(null, false);
       }
-      console.log('user is: ', user.name)
-      console.log('sessionID:', req.sessionID)
       return done(null, {
         email,
         password,
@@ -39,15 +37,14 @@ let initPassportLocal = () => {
     }
   }));
 passport.serializeUser(function(user, done) {
-  done(null, user.email);
+  done(null, user);
 });
 
-passport.deserializeUser(function (name, done) {
+passport.deserializeUser(function (user, done) {
 
-  return done(null, {
-    name,
-    active: true
-})
+User.findOne({email: user.email}, function (err, user) {
+  done(err, user);
+});
 })
 };
 
