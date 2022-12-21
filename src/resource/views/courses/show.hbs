@@ -1,19 +1,21 @@
 <div class='mt4'>
-    <div class='position-absolute top-500 end-0'>
-        <p>YOHHHHHHHHHH</p>
-        <ul>
-            <a
-                href='https://www.youtube.com/watch?v=pT9ZKB4nygw&list=PLKvoOwlacRoIX0Jp34PQAL7McZn4lga57'
-            >
-                <li>watching on Zootube</li>
-            </a>
-            <a href='https://pops.vn/search?q=Naruto%20Shippuden'>
-                <li>watching on chanel's website</li>
-            </a>
-            <a href='https://xoilacz.net/'>
-                <li>watching on xoilactv</li>
-            </a>
-        </ul>
+    <div class='position-absolute top-500 end-0' style="width: 18rem;">
+            <h5>You may also like</h5>
+                {{#each courses}}
+                    <div class='col-sm-6 col-lg-4 d-flex align-items-stretch'  style="width: 12rem;">
+                        <div class='card card-course-item'>
+                            <a href='/courses/{{this.slug}}'>
+                                {{! <img src="..." class="card-img-top" alt="..."> }}
+                                <img
+                                    class='card-img-top'
+                                    src='{{this.image}}'
+                                    alt='{{this.name}}'
+                                />
+                            </a>
+                            <p>{{this.name}}</p>
+                        </div>
+                    </div>
+                {{/each}}
     </div>
     <div class='col-lg-9'>
         <h3>{{course.name}}</h3>

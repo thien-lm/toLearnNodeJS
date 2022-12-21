@@ -1,5 +1,6 @@
 const Course = require('../models/Course');
 const User = require('../models/User');
+
 const { multipleToObject, toObject } = require('../../util/convertToObject'); // ../ == back to parent folder
 
 class SiteController {
@@ -7,31 +8,59 @@ class SiteController {
     index(req, res, next) {
         Course.find({})
             .then((course) => {
-                res.render('home', {
+                res.render('login',  {
+                    layout: 'mainGuest',
                     course: multipleToObject(course), //return array of thoose collection in array
                 });
             })
             .catch((er) => res.status(400).json({ error: 'ERROR!!!' }));
     }
+    //for user after log
+    user(req, res, next) {
+        if(req.isAuthenticated()){
+        Course.find({})
+            .then((course) => {
+                res.render('home',  {
+                    course: multipleToObject(course), //return array of thoose collection in array
+                });
+            })
+            .catch((er) => res.status(400).json({ error: 'ERROR!!!' }));
+    }
+    else res.end('time out')
+}    
     //serch
     search(req, res) {
         res.render('search');
     }
 
+
     login(req, res) {
         res.render('login')
     }
 
-     checkLogin(req, res, next) {
+    loginPost(req, res, next) {
+
+    }
+
+    checkLogin(req, res, next) {
         // console.log("siuuuu: " + req.body.email)
         User.findOne({email: req.body.email})
             .then(user => {
                 if(user != null) {
                     let userLogin = user.toObject();
                     if(userLogin.password == req.body.password) {
-                        setTimeout(()=> 2, 3000)
-                        res.redirect('/')
+                    //show main layout when user login
+                        Course.find({})
+                        .then((course) => {
+                            res.render('home',  {
+                                course: multipleToObject(course), //return array of thoose collection in array
+                            });
+                        })
+                        .catch((er) => res.status(400).json({ error: 'ERROR!!!' }));
+
+
                         console.log('login OK')
+                        consolel.log('session: ', req.sessionID)
                     }
                     else {
                         res.send("wrong email or password")

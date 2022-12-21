@@ -13,5 +13,6 @@ const Course = new Scheme({
     videoId: { type: String, maxLength: 255 },
     level: { type: String, maxLength: 255 },
 });
-
+//export the model so that we can query them
 module.exports = mongoose.model('narutoshippuden', Course); //first argument: in database, second = schema
+

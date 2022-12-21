@@ -1,12 +1,19 @@
 const Course = require('../models/Course');
-const { toObject } = require('../../util/convertToObject');
+const { toObject, multipleToObject } = require('../../util/convertToObject');
 class CourseController {
     //[GET] news
 
     show(req, res, next) {
         Course.findOne({ slug: req.params.slug })
             .then((course) => {
-                res.render('courses/show', { course: toObject(course) });
+                Course.find({}).
+                    then((courses) => {
+                        let randomNumber = Math.floor(Math.random()*3)
+                                res.render('courses/show', { course: toObject(course) ,
+                                                 courses: multipleToObject(courses).slice(randomNumber, randomNumber + 3 )}
+                                             );
+                })
+
             })
             .catch(next);
     }
