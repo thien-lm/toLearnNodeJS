@@ -1,6 +1,23 @@
 const Course = require('../models/Course');
+const Comment = require('../models/Comment')
 const { toObject, multipleToObject } = require('../../util/convertToObject');
 class CourseController {
+
+    comment(req, res, next) {
+        console.log('to mcomment')
+        // req.body.name = req.user.name;
+        req.body.name = req.user.name
+        req.body.email = req.user.email
+        console.log(req.body)
+        
+        const comment = new Comment(req.body);
+        comment
+            .save()
+            .then(() => res.redirect('back'))
+            .catch('404 ERROR');
+        console.log('cac')
+    }
+
     //[GET] news
 
     show(req, res, next) {

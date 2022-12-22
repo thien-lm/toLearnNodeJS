@@ -17,7 +17,7 @@ class SiteController {
     }
     //for user after log
     user(req, res, next) {
-        console.log(req.cookies)
+        console.log(req.sessionID)
         console.log(req.user)
         if(req.isAuthenticated()){
         Course.find({})
