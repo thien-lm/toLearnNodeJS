@@ -37,14 +37,53 @@
         </div>
     </div>
 </div>
-
-<div class='mt-4'>
+{{!-- commentForm --}}
+{{!-- <div class='mt-4'>
     <h3>Đăng bình luận</h3>
     <form method='POST' action='/courses/comment'>
         <div class='form-group'>
             <label for='name'>add comment</label>
+            <input type="hidden" name="videoID" value="{{course.videoId}}" />
+            <input type='text' class='form-control' id='message' name='message' />
+        </div>
+        <button type='submit' class='btn btn-primary'>Thêm bl</button>
+    </form>
+</div> --}}
+
+<div class='mt-4'>
+    <h3>Đăng bình luận</h3>
+    <form method='POST' onsubmit="return doComment(this);">
+        <div class='form-group'>
+            <label for='name'>add comment</label>
+            <input type="hidden" name="videoID" value="{{course.videoId}}" />
             <input type='text' class='form-control' id='message' name='message' />
         </div>
         <button type='submit' class='btn btn-primary'>Thêm bl</button>
     </form>
 </div>
+
+<script>
+    function doComment(form) {
+        $.ajax({
+            url: "/courses/comment",
+            method: "POST",
+            data: {message: form.message.value, videoID: form.videoID.value},
+            success: response => {
+                $('#comment tr').remove()
+                for(let data of response) {
+                    $('#comment').append("<tr><th><p>"+'written by: ' + data.name + 'message: ' + data.message+"</p></th></tr>")
+                }
+            }
+        });
+        return false;
+    }
+</script>
+
+<table id = 'comment'>
+    <h5>here are comments</h5>
+    {{#each comment}}
+    <tr><th>
+          <p>written by: {{this.name}}, message: {{this.message}}</p>
+    </th></tr>
+    {{/each}}
+</table>
