@@ -9,6 +9,7 @@ router.get('/:id/edit', courseController.edit)
 router.put('/:id', courseController.update);
 router.post('/store', courseController.store);
 router.post('/comment', courseController.comment)
+router.get('/playlists/:id', courseController.showList);
 router.get('/:slug', courseController.show);
 
 module.exports = router;

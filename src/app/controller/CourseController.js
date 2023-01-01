@@ -16,8 +16,9 @@ class CourseController {
     //         .then(() => res.redirect('back'))
     //         .catch('404 ERROR');
     // }
+    
+    //to work with ajax
     comment(req, res, next) {
-        console.log('cac')
         req.body.name = req.user.name
         req.body.email = req.user.email
         req.body.video = req.body.videoID
@@ -32,6 +33,7 @@ class CourseController {
             }
         },
         (error, post) => {
+            //return data to client
             Comment.find({video:  req.body.videoID}).then(comment => res.send(multipleToObject(comment)))
         }
             
@@ -63,6 +65,14 @@ class CourseController {
 
     create(req, res, next) {
         res.render('courses/create');
+    }
+
+    showList(req, res, next) {
+        Course.find({playList: req.params.id})
+        .then(course => res.render('playList', {
+            course: multipleToObject(course) 
+        }))
+
     }
 
     store(req, res, next) {

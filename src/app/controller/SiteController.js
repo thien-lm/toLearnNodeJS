@@ -1,5 +1,6 @@
 const Course = require('../models/Course');
 const User = require('../models/User');
+const PlayList =require('../models/playList');
 
 const { multipleToObject, toObject } = require('../../util/convertToObject'); // ../ == back to parent folder
 
@@ -17,13 +18,11 @@ class SiteController {
     }
     //for user after log
     user(req, res, next) {
-        console.log(req.sessionID)
-        console.log(req.user)
         if(req.isAuthenticated()){
-        Course.find({})
-            .then((course) => {
+            PlayList.find({})
+            .then((playList) => {
                 res.render('home',  {
-                    course: multipleToObject(course), //return array of thoose collection in array
+                    playList: multipleToObject(playList), //return array of thoose collection in array
                 });
             })
             .catch((er) => res.status(400).json({ error: 'ERROR!!!' }));

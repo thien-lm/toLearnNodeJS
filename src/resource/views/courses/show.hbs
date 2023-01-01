@@ -62,6 +62,7 @@
     </form>
 </div>
 
+{{!-- ajax --}}
 <script>
     function doComment(form) {
         $.ajax({
@@ -71,7 +72,7 @@
             success: response => {
                 $('#comment tr').remove()
                 for(let data of response) {
-                    $('#comment').append("<tr><th><p>"+'written by: ' + data.name + 'message: ' + data.message+"</p></th></tr>")
+                    $('#comment').append("<tr><th><p>"+'written by: ' + data.name + ' ,message: ' + data.message+"</p></th></tr>")
                 }
             }
         });

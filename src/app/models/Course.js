@@ -11,6 +11,7 @@ const Course = new Scheme({
     updateAt: { type: Date, default: Date.now() },
     slug: { type: String, slug: 'name', unique: true },
     videoId: { type: String, maxLength: 255 },
+    playList: { type: String, maxLength: 255 },
     level: { type: String, maxLength: 255 },
 });
 //export the model so that we can query them
