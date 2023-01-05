@@ -1,7 +1,9 @@
 const path = require('path');
 const express = require('express');
-const app = express();
+const app = express(); 
 const { engine } = require('express-handlebars');
+const dotenv = require('dotenv') 
+dotenv.config({ path: "config.env" })
 const port = process.env.PORT || 3000;
 const morgan = require('morgan');
 
@@ -11,7 +13,7 @@ const db = require('./config/db');
 const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
-
+console.log(process.env.ADMIN_ID)
 const initPassportLocal = require("./app/controller/passport/passportLocal");
 
 initPassportLocal(); 
