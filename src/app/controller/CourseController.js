@@ -62,6 +62,21 @@ class CourseController {
             .catch(next);
     }
 
+    //search
+    search(req, res, next) {
+        Course.find({name: req.body.search})
+            .then(video => {
+                if(video.length == 0) {
+                    res.end('i cant find your video')
+                }
+                else {
+                res.render('playList', {
+                    course: multipleToObject(video) 
+                })
+                }
+            })
+    }
+
 
     create(req, res, next) {
         res.render('courses/create');

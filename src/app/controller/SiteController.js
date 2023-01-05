@@ -14,7 +14,7 @@ class SiteController {
                     course: multipleToObject(course), //return array of thoose collection in array
                 });
             })
-            .catch((er) => res.status(400).json({ error: 'ERROR!!!' }));
+            .catch((er) => res.status(400).json({ error: 'error cause by login!!!' }));
     }
     //for user after log
     user(req, res, next) {

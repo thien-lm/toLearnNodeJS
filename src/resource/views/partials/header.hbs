@@ -9,8 +9,14 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
+    <form class="d-flex justify-content-between" role="search"  method="POST" action="/courses/search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id = 'search' name='search'>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
@@ -21,4 +27,7 @@
             <li><a class="dropdown-item" href="/me/stored/courses">my video</a></li>
             {{!-- <li><a class="dropdown-item" href="/signup">log out</a></li> --}}
             <li><a class="dropdown-item" href="/signup">sign out</a></li>
+          </ul>
+        </li>
+
 </nav>
