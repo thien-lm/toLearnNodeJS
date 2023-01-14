@@ -5,6 +5,13 @@ const PlayList =require('../models/playList');
 const { multipleToObject, toObject } = require('../../util/convertToObject'); // ../ == back to parent folder
 
 class SiteController {
+    //show ide
+
+    showIDE(req, res, next) {
+        res.render('IDE')
+    }
+
+
     //[GET]
     index(req, res, next) {
         Course.find({})

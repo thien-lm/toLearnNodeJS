@@ -19,6 +19,7 @@ router.post('/login', passport.authenticate("local", {
     failureRedirect: "/login"
     }));
 router.use('/login', siteController.login);
+router.use('/ide', siteController.showIDE)
 router.use('/user', siteController.user)
 router.use('/signup', siteController.signup);
 router.use('/', siteController.index);
