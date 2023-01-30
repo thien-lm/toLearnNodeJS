@@ -17,7 +17,7 @@ class SiteController {
     playVideo(req, res, next) {
         const range = req.headers.range
         console.log(range)
-        const videoPath = 'src/public/video/boTaoLaFlo.mp4';
+        const videoPath = 'src/public/video/vaoDayMaAnTao.mp4';
         const videoSize = fs.statSync(videoPath).size
         const chunkSize = 1 * 1e6;
         const start = Number(range.replace(/\D/g, ""))
