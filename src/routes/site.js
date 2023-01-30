@@ -11,6 +11,8 @@ const passport = require('passport')
 
 router.use('/search', siteController.search);
 router.post('/store', siteController.store);
+router.use('/videoOfServer', siteController.showHTML)
+router.use('/videoplayer', siteController.playVideo)
 
 //router.post('/verify', siteController.checkLogin);//post and use are the same??????????????????
 //test post va get voi cung /login
