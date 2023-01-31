@@ -1,6 +1,6 @@
 const Course = require('../models/Course');
 const Comment = require('../models/Comment')
-const { toObject, multipleToObject } = require('../../util/convertToObject');
+const { toObject, multipleToObject , checkTwoString} = require('../../util/convertToObject');
 class CourseController {
 
     // comment(req, res, next) {
@@ -64,14 +64,20 @@ class CourseController {
 
     //search
     search(req, res, next) {
-        Course.find({name: req.body.search})
+        Course.find({})
             .then(video => {
                 if(video.length == 0) {
                     res.end('i cant find your video')
                 }
                 else {
+                let foundVideo = []
+                for(let i = 0; i < video.length; i++) {
+                    if(checkTwoString(req.body.search.toLowerCase(), video[i].name.toLowerCase())) {
+                        foundVideo.push(toObject(video[i]))
+                    }
+                }
                 res.render('playList', {
-                    course: multipleToObject(video) 
+                    course: foundVideo
                 })
                 }
             })
