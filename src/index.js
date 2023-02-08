@@ -24,7 +24,10 @@ const bodyParser = require("body-parser");
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const session = require('express-session')
-
+//socketIO
+const http = require('http')
+const server = http.createServer(app)
+const {Server} = require('socket.io')
 
 const methodOverride = require('method-override')
 //conncet to db
@@ -80,7 +83,20 @@ app.engine(
 app.set('view engine', 'hbs');//app su dung view engine hbs
 app.set('views', path.join(__dirname, 'resource', 'views'));//nhat bat ki trong thu muc view hoac resource
 
+
+//socketIO
+const io = new Server(server)
+io.on('connection', (socket) => {
+  console.log('user connected')
+  socket.on('on-chat', data=> {
+    console.log(data)
+    io.emit('user-chat', data)
+  })
+})
+                     
+
+
 //route init
 routes(app);
 
-app.listen(port, () => console.log('learning app')); //start a web server
+server.listen(port, () => console.log('learning app')); //start a web server

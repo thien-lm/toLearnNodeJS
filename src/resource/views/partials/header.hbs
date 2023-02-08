@@ -31,7 +31,42 @@
             <li><a class="dropdown-item" href="/me/stored/courses">my video</a></li>
             {{!-- <li><a class="dropdown-item" href="/signup">log out</a></li> --}}
             <li><a class="dropdown-item" href="/signup">sign out</a></li>
+    <li>   
+        <form id = "chat-form">
+          <input type = "text" id = "chat-mess">
+          <button id = "send-chat">send</button>
+        </form>
+    </li> 
           </ul>
         </li>
 
+ 
+
 </nav>
+<p id = "message"></p> 
+
+
+<script src = "/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  const chatForm = document.getElementById("chat-form")
+  const chatMes = document.getElementById("chat-mess")
+
+  chatForm.addEventListener('submit', (e)=> {
+    e.preventDefault()
+    const message = chatMes.value 
+    socket.emit('on-chat', {
+      message : message
+    })
+    chatMes.value = ''
+  })
+
+const messages = document.getElementById('message')
+socket.on('user-chat', (message) => {
+  //const chat = document.createElement('li')
+  //chat.textContent = message.message
+  const messageValue = message.message
+  messages.innerHTML = "admin xin thông báo: " + messageValue
+})
+
+</script> 
