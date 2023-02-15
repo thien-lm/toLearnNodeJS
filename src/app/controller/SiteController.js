@@ -1,6 +1,7 @@
 const Course = require('../models/Course');
 const User = require('../models/User');
 const fs = require('fs');
+var nodemailer = require('nodemailer');
 const PlayList =require('../models/playList');
 
 // const PlayLissst =require('../../public/video');
@@ -114,8 +115,33 @@ class SiteController {
 
     signup(req, res) {
         res.clearCookie('connect.sid');
-        res.redirect('/');
-    }
+        console.log(req.user.email)
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'thikhanhlinhle69@gmail.com',
+              pass: process.env.PASSWORD
+            }
+          });
+          
+          var mailOptions = {
+            from: 'thikhanhlinhle69@gmail.com', 
+            to: '' + req.user.email,
+            subject: 'Sending Email using Node.js',
+            text: `Hi thien, hope u have a nice day!!!.`,      
+            html: '<h1>Welcome</h1><p>That was easy!</p><br>Hi thien, hope u have a nice day!!!</br>'  
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) { 
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
+          res.redirect('/')
+    } 
     //POST: store user
     store(req, res, next) {
         const user = new User(req.body);

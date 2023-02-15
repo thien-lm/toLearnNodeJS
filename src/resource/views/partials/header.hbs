@@ -43,7 +43,7 @@
  
 
 </nav>
-<p id = "message"></p> 
+<marquee id = "message"></marquee> 
 
 
 <script src = "/socket.io/socket.io.js"></script>
@@ -67,6 +67,12 @@ socket.on('user-chat', (message) => {
   //chat.textContent = message.message
   const messageValue = message.message
   messages.innerHTML = "admin xin thông báo: " + messageValue
+
 })
+
+//messages.onfinish = function(){
+//    messages.innerHTML = ''
+//    messages.loop = 2
+//};
 
 </script> 
