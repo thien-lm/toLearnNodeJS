@@ -9,6 +9,10 @@ const { multipleToObject, toObject } = require('../../util/convertToObject'); //
 
 class SiteController {
 
+    signout(req, res, next) {
+        res.clearCookie('connect.sid');
+        res.redirect('/');
+    }
     //scene for play video
     showHTML(req, res, next) {
         res.render('testMp4Player')
@@ -76,7 +80,9 @@ class SiteController {
 
 
     login(req, res) {
-        res.render('login')
+        res.render('login', {
+            layout: 'mainGuest' }
+            )
     }
 
     loginPost(req, res, next) {
@@ -114,33 +120,34 @@ class SiteController {
     }
 
     signup(req, res) {
-        res.clearCookie('connect.sid');
-        console.log(req.user.email)
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              user: 'thikhanhlinhle69@gmail.com',
-              pass: process.env.PASSWORD
-            }
-          });
+        // res.clearCookie('connect.sid');
+        // console.log(req.user.email)
+        // var transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //       user: 'thikhanhlinhle69@gmail.com',
+        //       pass: process.env.PASSWORD
+        //     }
+        //   });
           
-          var mailOptions = {
-            from: 'thikhanhlinhle69@gmail.com', 
-            to: '' + req.user.email,
-            subject: 'Sending Email using Node.js',
-            text: `Hi thien, hope u have a nice day!!!.`,      
-            html: '<h1>Welcome</h1><p>That was easy!</p><br>Hi thien, hope u have a nice day!!!</br>'  
-          };
+        //   var mailOptions = {
+        //     from: 'thikhanhlinhle69@gmail.com', 
+        //     to: '' + req.user.email,
+        //     subject: 'Sending Email using Node.js',
+        //     text: `Hi thien, hope u have a nice day!!!.`,      
+        //     html: '<h1>Welcome</h1><p>That was easy!</p><br>Hi thien, hope u have a nice day!!!</br>'  
+        //   };
           
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) { 
-              console.log(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-            }
-          });
+        //   transporter.sendMail(mailOptions, function(error, info){
+        //     if (error) { 
+        //       console.log(error);
+        //     } else {
+        //       console.log('Email sent: ' + info.response);
+        //     }
+        //   });
 
-          res.redirect('/')
+        //   res.redirect('/')
+        res.render('signup')
     } 
     //POST: store user
     store(req, res, next) {
